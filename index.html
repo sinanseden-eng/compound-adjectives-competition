@@ -100,22 +100,12 @@
             box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
 
-        .vocab-tag.selected {
-            background: linear-gradient(45deg, #48bb78, #38a169);
-            transform: scale(1.05);
-        }
-
         .activity-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease;
-        }
-
-        .activity-card:hover {
-            transform: translateY(-5px);
         }
 
         .activity-header {
@@ -253,21 +243,6 @@
             background: linear-gradient(45deg, #f56565, #e53e3e);
         }
 
-        .progress-bar {
-            background: #e2e8f0;
-            border-radius: 10px;
-            height: 8px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            background: linear-gradient(45deg, #48bb78, #38a169);
-            height: 100%;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-
         .word-count {
             text-align: right;
             color: #718096;
@@ -303,15 +278,8 @@
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
         }
-
-        .ad-submission.presenting {
-            border-color: #667eea;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            transform: scale(1.02);
-        }
-
+        
         .vote-section {
             display: flex;
             align-items: center;
@@ -320,34 +288,46 @@
             padding-top: 15px;
             border-top: 1px solid #e2e8f0;
         }
+        
+        .vote-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
         .vote-btn {
-            background: #f56565;
+            background: #48bb78;
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1.2rem;
+            font-weight: bold;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vote-btn.remove {
+             background: #f56565;
         }
 
         .vote-btn:hover {
-            background: #e53e3e;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         .vote-count {
             font-weight: 600;
             color: #4a5568;
+            font-size: 1.1rem;
         }
 
         .presentation-mode {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             display: none;
@@ -369,33 +349,24 @@
 
         .close-presentation {
             position: absolute;
-            top: 15px;
-            right: 20px;
-            background: #f56565;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            font-size: 1.2rem;
+            top: 15px; right: 20px;
+            background: #f56565; color: white;
+            border: none; border-radius: 50%;
+            width: 40px; height: 40px;
+            cursor: pointer; font-size: 1.2rem;
         }
 
         .presentation-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 20px; padding-top: 20px;
             border-top: 2px solid #e2e8f0;
         }
 
         .results-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             display: none;
@@ -405,32 +376,24 @@
         }
 
         .results-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 80%;
-            overflow-y: auto;
+            background: white; border-radius: 20px;
+            padding: 30px; max-width: 600px; width: 100%;
+            max-height: 80%; overflow-y: auto;
         }
 
         .winner-card {
             background: linear-gradient(45deg, #ffd700, #ffed4e);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 15px 0;
-            text-align: center;
+            border-radius: 15px; padding: 20px;
+            margin: 15px 0; text-align: center;
         }
-        
-        #submission-feedback {
-            transition: opacity 0.3s ease;
-        }
+
+        #submission-feedback { transition: opacity 0.3s ease; }
 
         @media (max-width: 768px) {
             .container { padding: 15px; }
             .header h1 { font-size: 2rem; }
             .classroom-controls { flex-direction: column; gap: 10px; }
-            .object-selector { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+            .object-selector { grid-template-columns: 1fr; }
             .activity-header { flex-direction: column; text-align: center; }
             .activity-icon { margin-right: 0; margin-bottom: 10px; }
             .presentation-content { padding: 20px; margin: 10px; }
@@ -452,19 +415,15 @@
         </div>
 
         <div class="vocabulary-bank">
-            <h3>📚 Vocabulary Bank - Click to Select Words</h3>
-            <div class="vocab-tags">
-                <button class="vocab-tag" data-word="sky-high">sky-high</button>
-                <button class="vocab-tag" data-word="high-tech">high-tech</button>
-                <button class="vocab-tag" data-word="must-have">must-have</button>
-                <button class="vocab-tag" data-word="hard-to-resist">hard-to-resist</button>
-                <button class="vocab-tag" data-word="world-wide">world-wide</button>
-                <button class="vocab-tag" data-word="lightning-quick">lightning-quick</button>
+            <h3>📚 Vocabulary Bank</h3>
+             <div class="vocab-tags">
+                <button class="vocab-tag">sky-high</button>
+                <button class="vocab-tag">high-tech</button>
+                <button class="vocab-tag">must-have</button>
+                <button class="vocab-tag">hard-to-resist</button>
+                <button class="vocab-tag">world-wide</button>
+                <button class="vocab-tag">lightning-quick</button>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="vocabProgress"></div>
-            </div>
-            <div class="word-count">Selected: <span id="selectedCount">0</span>/4 minimum words</div>
         </div>
 
         <div class="activity-card">
@@ -474,9 +433,13 @@
             </div>
             
             <p><strong>Objective:</strong> Transform an everyday object into the next must-have product using compound adjectives! (Aim for 30-50 words).</p>
-            <p class="mt-2"><strong>Instructions:</strong> After your group writes the ad (e.g., on paper or Notability), **email it to your teacher**. The teacher will then use the form below to post the finished ad to the class gallery for voting.</p>
+            <p class="mt-2"><strong>Instructions:</strong> After your group writes the ad, email it to your teacher. The teacher will then use the form below to post the finished ad to the class gallery for voting.</p>
             
-            <h4 class="mt-4">🎯 Step 1: Teacher - Choose a Product for a Group</h4>
+            <div class="example-box">
+                <strong>💡 Example Ad:</strong> "Introducing AquaLuxe, the new <span class="highlight">must-have</span> hydration experience! Our <span class="highlight">high-tech</span> filtration system ensures every sip is perfect. For a limited time, we have a <span class="highlight">hard-to-resist</span> offer. Get <span class="highlight">lightning-quick</span> delivery anywhere with our <span class="highlight">world-wide</span> shipping. Don't pay <span class="highlight">sky-high</span> prices for luxury—experience AquaLuxe!"
+            </div>
+            
+            <h4 class="mt-6 font-bold text-lg">🎯 Step 1: Teacher - Choose a Product for a Group</h4>
             <div class="object-selector">
                  <div class="object-card" data-object="Plain White T-Shirt"> <div class="object-emoji">👕</div> <h4>Plain White T-Shirt</h4> </div>
                  <div class="object-card" data-object="Simple Pen"> <div class="object-emoji">🖊️</div> <h4>Simple Pen</h4> </div>
@@ -486,14 +449,8 @@
                  <div class="object-card" data-object="Basic Umbrella"> <div class="object-emoji">☂️</div> <h4>Basic Umbrella</h4> </div>
             </div>
 
-            <div class="example-box">
-                <strong>💡 Example Ad:</strong> "Introducing AquaLuxe, the new <span class="highlight">must-have</span> hydration experience! Our <span class="highlight">high-tech</span> filtration system ensures every sip is perfect. For a limited time, we have a <span class="highlight">hard-to-resist</span> offer. Get <span class="highlight">lightning-quick</span> delivery anywhere with our <span class="highlight">world-wide</span> shipping. Don't pay <span class="highlight">sky-high</span> prices for luxury—experience AquaLuxe!"
-            </div>
-
             <div class="ad-builder">
                 <h4 class="font-bold text-lg">✍️ Step 2: Teacher - Post a New Advertisement</h4>
-                <p class="text-sm text-gray-500">Email your text to your teacher. All the advertisements must appear on Teacher's screen.</p>
-
                 <div class="group-input mt-4">
                     <label for="groupName">👥 Group Name:</label>
                     <input type="text" id="groupName" placeholder="Enter group name (e.g., Team Alpha)">
@@ -565,15 +522,13 @@
                     <h4>👥 ${submission.groupName} - ${submission.product}</h4>
                     <p>${highlightedText}</p>
                     <div class="vote-section">
-                        <button class="vote-btn" onclick="vote(this, ${index})">❤️ Vote</button>
-                        <span class="vote-count">${submission.votes} vote${submission.votes !== 1 ? 's' : ''}</span>
+                        <div class="vote-controls">
+                            <button class="vote-btn remove" onclick="adjustVote(${index}, -1)">-</button>
+                            <span class="vote-count">${submission.votes} vote${submission.votes !== 1 ? 's' : ''}</span>
+                            <button class="vote-btn" onclick="adjustVote(${index}, 1)">+</button>
+                        </div>
                     </div>
                 `;
-                const voteBtn = submissionElement.querySelector('.vote-btn');
-                if (submission.voted) {
-                    voteBtn.classList.add('voted');
-                    voteBtn.style.background = '#48bb78';
-                }
                 gallery.appendChild(submissionElement);
             });
             document.getElementById('totalSubmissions').textContent = allSubmissions.length;
@@ -609,7 +564,7 @@
             if (!text.trim()) { return showFeedback('Please write the advertisement first!', true); }
             if (checkVocabUsage() < 4) { return showFeedback('The ad must use at least 4 vocabulary words!', true); }
             
-            allSubmissions.push({ groupName, product: selectedProduct, text, votes: 0, voted: false });
+            allSubmissions.push({ groupName, product: selectedProduct, text, votes: 0 });
             renderGallery();
             
             document.getElementById('adText').value = '';
@@ -623,12 +578,10 @@
             document.getElementById('adGallery').lastElementChild.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function vote(button, index) {
-            allSubmissions[index].voted = !allSubmissions[index].voted;
-            if (allSubmissions[index].voted) {
-                allSubmissions[index].votes++;
-            } else {
-                allSubmissions[index].votes--;
+        function adjustVote(index, amount) {
+            allSubmissions[index].votes += amount;
+            if (allSubmissions[index].votes < 0) {
+                allSubmissions[index].votes = 0;
             }
             renderGallery();
         }
@@ -658,7 +611,6 @@
             if (confirm('This will reset all votes to zero. Are you sure?')) {
                 allSubmissions.forEach(submission => {
                     submission.votes = 0;
-                    submission.voted = false;
                 });
                 renderGallery();
                 alert('✅ All votes have been reset!');
